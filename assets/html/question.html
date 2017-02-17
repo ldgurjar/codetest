@@ -1,0 +1,63 @@
+<div id="q1" class="singlequestion">
+                <div class="form-group">
+                  <div class="col-sm-1"><button class="btn btn-primary"><span class="badge">Q</span></button>
+                  </div>
+                  <div class="col-sm-6"><input type="text" class="form-control" id="question"></div>
+                  <div class="col-sm-1"><button class="btn btn-default"><span class="badge">A</span></button>
+                  </div> 
+                  <div class="col-sm-4">
+                      <!--<select class="form-control" ng-model="select1" id="sel1" ng-options="x for x in options" >
+                       </select>-->
+                       <select name="answertype" class="form-control" ng-model="answertype"  >
+                           <option ng-repeat="answertype in answertypes" value="{{answertype.contactType}} ">   {{answertype.contactType}}   </option><!-- {{answertype.contactId}}-->
+                         </select>
+                  </div>
+                 </div>
+                 <div class="form-group">
+                   <div ng-switch="answertype">
+                          <div ng-switch-when="Multiline Text">
+                             <textarea class="form-control inputmargin" name="MT_1" id="MT_1"></textarea>
+                          </div>
+                          <div ng-switch-when="Single Choice">
+                            <div class="row" >
+                               <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="SC_1" id="SC_1" value=""/></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" ng-click="AddSubQuestionControl($event)" id="12345"> <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                <div id="subquestionloader"></div>
+                            </div> 
+                            <div class="row" >   
+                              <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="SC_2" id="SC_2" value=""/></div>
+                              <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                            </div>  
+                            <div class="row" >
+                              <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="SC_3" id="SC_3" value=""/></div>
+                              <div class="col-sm-4"><button type="button" class="btn btn-default  inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                            </div>  
+                          </div>
+                          <div ng-switch-when="Multipule Choice">
+                            <div class="row" >
+                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="MC_1" id="MC_1" value=""/></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                            </div>  
+                            <div class="row" >    
+                                <div class="col-sm-8"><input type="text" class="form-control inputmargin"  name="MC_2" id="MC_2" value=""/></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                            </div>  
+                            <div class="row" >    
+                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="MC_3" id="MC_3" value=""/></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                            </div>  
+                            <div class="row" >    
+                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="MC_4" id="MC_4" value=""/></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                            </div>  
+                            <div class="row" >    
+                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="MC_5" id="MC_5" value=""/></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                            </div>   
+                          </div>
+                          <div ng-switch-default>
+                               <p>Select an answer type</p>
+                          </div>
+                     </div>
+        </div>
+ </div>

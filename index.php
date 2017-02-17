@@ -235,6 +235,12 @@ switch (ENVIRONMENT)
 	// Name of the "system" directory
 	define('SYSDIR', basename(BASEPATH));
 
+	// Basic url
+	define('SITEURL', "http://".$_SERVER['HTTP_HOST']."/codetest/");
+    define('ASITEURL', "http://".$_SERVER['HTTP_HOST']."/codetest/index.php/");
+    define("INDEX_FILE","/index.php");
+    define('FILEPATH', $_SERVER['DOCUMENT_ROOT'].'/codetest/');
+
 	// The path to the "application" directory
 	if (is_dir($application_folder))
 	{
