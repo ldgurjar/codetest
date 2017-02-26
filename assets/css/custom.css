@@ -40,7 +40,13 @@ header h1{
     margin-bottom: 10px;
     display: inline;
 }
-
+.subquestion{
+    padding:10px;
+    border:2px solid #ccc;
+    margin-left: 30px; 
+    margin-bottom: 5px;
+    background: #ccc;
+}
 
 footer {
   border-top: 1px solid #D0D0D0;

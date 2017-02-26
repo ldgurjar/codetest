@@ -12,6 +12,7 @@ class Main extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->model('main_model');
+        $this->load->model('Ajax_model');
        
     }
 
@@ -25,9 +26,17 @@ class Main extends CI_Controller {
 
 	public function screen1()
 	{
-		echo "data";
+		//echo "data";
 		$this->load->view('header');
 		$this->load->view('screen1');
 		$this->load->view('footer');
+	}
+	public function savedata()
+	{
+		
+	   $data = $_REQUEST;
+	   $insertQuestion  = $this->Ajax_model->insertQuestion($data);
+	   echo  'data saved';
+       //$this->load->view('footer');
 	}
 }

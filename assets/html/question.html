@@ -1,63 +1,87 @@
-<div id="q1" class="singlequestion">
+<div id="q{{question_no}}" class="singlequestion" style="border-bottom: 2px;">
                 <div class="form-group">
-                  <div class="col-sm-1"><button class="btn btn-primary"><span class="badge">Q</span></button>
-                  </div>
-                  <div class="col-sm-6"><input type="text" class="form-control" id="question"></div>
-                  <div class="col-sm-1"><button class="btn btn-default"><span class="badge">A</span></button>
-                  </div> 
-                  <div class="col-sm-4">
-                      <!--<select class="form-control" ng-model="select1" id="sel1" ng-options="x for x in options" >
-                       </select>-->
-                       <select name="answertype" class="form-control" ng-model="answertype"  >
-                           <option ng-repeat="answertype in answertypes" value="{{answertype.contactType}} ">   {{answertype.contactType}}   </option><!-- {{answertype.contactId}}-->
-                         </select>
-                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-1"><button class="btn btn-primary"><span></span><span class="badge">Q-{{question_no}}</span></button>
+                        </div>
+                        <div class="col-sm-6"><input type="text" class="form-control" id="q_questiontext_{{question_no}}" name="q_questiontext_{{question_no}}" ng-model="questiontext" value="" required>
+                       <!--  <span style="color:red" ng-show="questionform.questiontext_{{question_no}}.$dirty && questionform.questiontext_{{question_no}}.$invalid"><span ng-show="questionform.questiontext_{{question_no}}.$error.required">Question is required.</span></span>  -->
+                        
+                        </div>
+                        <div class="col-sm-1"><button class="btn btn-default"><span class="badge">A-{{question_no}}</span></button>
+                        </div> 
+                        <div class="col-sm-4">
+                            <select name="answertype_{{question_no}}" id="answertype_{{question_no}}" class="form-control" ng-model="answertype" >
+                                 <option ng-repeat="answertype in answertypes" value="{{answertype.contactType}} ">   {{answertype.contactType}}   </option><!-- {{answertype.contactId}}-->
+                               </select>
+                        </div>
+                      </div>
+                      
+                    </div>
                  </div>
                  <div class="form-group">
                    <div ng-switch="answertype">
                           <div ng-switch-when="Multiline Text">
-                             <textarea class="form-control inputmargin" name="MT_1" id="MT_1"></textarea>
+                             <div class="col-sm-12"><textarea class="form-control inputmargin" name="Q_{{question_no}}_MT_1" id="Q_{{question_no}}_MT_1" ng-model="answervalue"></textarea></div>
                           </div>
                           <div ng-switch-when="Single Choice">
+                          <div class="col-sm-12">
                             <div class="row" >
-                               <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="SC_1" id="SC_1" value=""/></div>
-                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" ng-click="AddSubQuestionControl($event)" id="12345"> <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
-                                <div id="subquestionloader"></div>
-                            </div> 
+                                  <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="Q_{{question_no}}_SC_1" id="Q_{{question_no}}_SC_1" value=""/></div>
+                                   <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" ng-click="AddSubQuestionControl($event)" id="Q_{{question_no}}_button_SC_1"> <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                   <div id="subquestionloader_Q_{{question_no}}_button_SC_1"></div>
+                             </div> 
                             <div class="row" >   
-                              <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="SC_2" id="SC_2" value=""/></div>
-                              <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="Q_{{question_no}}_SC_2" id="Q_{{question_no}}_SC_2" value=""/></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" ng-click="AddSubQuestionControl($event)" id="Q_{{question_no}}_button_SC_2"> <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                <div id="subquestionloader_Q_{{question_no}}_button_SC_2"></div>
                             </div>  
                             <div class="row" >
-                              <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="SC_3" id="SC_3" value=""/></div>
-                              <div class="col-sm-4"><button type="button" class="btn btn-default  inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
-                            </div>  
-                          </div>
-                          <div ng-switch-when="Multipule Choice">
-                            <div class="row" >
-                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="MC_1" id="MC_1" value=""/></div>
-                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
-                            </div>  
-                            <div class="row" >    
-                                <div class="col-sm-8"><input type="text" class="form-control inputmargin"  name="MC_2" id="MC_2" value=""/></div>
-                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
-                            </div>  
-                            <div class="row" >    
-                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="MC_3" id="MC_3" value=""/></div>
-                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
-                            </div>  
-                            <div class="row" >    
-                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="MC_4" id="MC_4" value=""/></div>
-                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
-                            </div>  
-                            <div class="row" >    
-                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="MC_5" id="MC_5" value=""/></div>
-                                <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="Q_{{question_no}}_SC_3" id="Q_{{question_no}}_SC_3" value=""/></div>
+                                <div class="col-sm-4"><button type="button" class="btn btn-default  inputmargin" ng-click="AddSubQuestionControl($event)" id="Q_{{question_no}}_button_SC_3"> <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                <div id="subquestionloader_Q_{{question_no}}_button_SC_3"></div>
+                            </div>
                             </div>   
                           </div>
+                          <div ng-switch-when="Multiple Choice">
+                            <div class="col-sm-12">
+                                <div class="row" >
+                                    <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="Q_{{question_no}}_MC_1" id="Q_{{question_no}}_MC_1" value=""/></div>
+                                    <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" ng-click="AddSubQuestionControl($event)" id="Q_{{question_no}}_button_MC_1" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                    <div id="subquestionloader_Q_{{question_no}}_button_MC_1"></div>
+                                </div>  
+                                <div class="row" >    
+                                    <div class="col-sm-8"><input type="text" class="form-control inputmargin"  name="Q_{{question_no}}_MC_2" id="Q_{{question_no}}_MC_2" value=""/></div>
+                                    <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" ng-click="AddSubQuestionControl($event)" id="Q_{{question_no}}_button_MC_2" > <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                    <div id="subquestionloader_Q_{{question_no}}_button_MC_2"></div>
+                                </div>  
+                                <div class="row" >    
+                                    <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="Q_{{question_no}}_MC_3" id="Q_{{question_no}}_MC_3" value=""/></div>
+                                    <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" ng-click="AddSubQuestionControl($event)" id="Q_{{question_no}}_button_MC_3"> <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                    <div id="subquestionloader_Q_{{question_no}}_button_MC_3"></div>
+                                </div>  
+                                <div class="row" >    
+                                    <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="Q_{{question_no}}_MC_4" id="Q_{{question_no}}_MC_4" value=""/></div>
+                                    <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" ng-click="AddSubQuestionControl($event)" id="Q_{{question_no}}_button_MC_4"> <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                    <div id="subquestionloader_Q_{{question_no}}_button_MC_4"></div>
+                                </div>  
+                                <div class="row" >    
+                                    <div class="col-sm-8"><input type="text" class="form-control inputmargin" name="Q_{{question_no}}_MC_5" id="Q_{{question_no}}_MC_5" value=""/></div>
+                                    <div class="col-sm-4"><button type="button" class="btn btn-default inputmargin" ng-click="AddSubQuestionControl($event)" id="Q_{{question_no}}_button_MC_5"> <span class="glyphicon glyphicon-plus"></span> ADD SUB QUESTION</button></div>
+                                    <div id="subquestionloader_Q_{{question_no}}_button_MC_5"></div>
+                                </div>
+                            </div>       
+                          </div>
                           <div ng-switch-default>
-                               <p>Select an answer type</p>
+                              <div class="col-sm-12">
+                                <div class="row pull-right" >
+                                   <div class="col-sm-12">
+                                    <p>Select an answer type</p>
+                                   </div> 
+                                </div>
+                              </div>      
                           </div>
                      </div>
         </div>
+
  </div>
